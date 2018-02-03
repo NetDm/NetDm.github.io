@@ -89,7 +89,7 @@ function setUpVideoInterface(userAgent, target, remoteRenderId, buttonId) {
     userAgent.on('invite', function (incomingSession) {
         onCall = true;
         session = incomingSession;
-        var options = mediaOptions(true, false, remoteRender, null);
+        var options = mediaOptions(true, true, remoteRender, null);		//allow voice and video
         button.firstChild.nodeValue = 'hang up';
         session.accept(options);
         session.on('bye', function () {
@@ -110,7 +110,7 @@ function setUpVideoInterface(userAgent, target, remoteRenderId, buttonId) {
             onCall = true;
             button.firstChild.nodeValue = 'hang up';
             session = makeCall(userAgent, target,
-                               true, false,
+                               true, true,					//allow voice and video
                                remoteRender, null);
             session.on('bye', function () {
                 onCall = false;
